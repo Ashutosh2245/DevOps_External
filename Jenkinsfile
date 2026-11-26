@@ -1,25 +1,28 @@
 pipeline {
     agent any
 
+    environment {
+        MAVEN_HOME = 'C:\\Users\\Ashutosh Kumar\\Downloads\\apache-maven-3.10.2-bin\\apache-maven-3.10.2'
+    }
+
     stages {
 
         stage('Checkout') {
             steps {
                 echo 'Checking out source code...'
-                checkout scm
             }
         }
 
         stage('Maven Version') {
             steps {
-                bat 'mvn -version'
+                bat '"%MAVEN_HOME%\\bin\\mvn.cmd" -version'
             }
         }
 
         stage('Build Application') {
             steps {
                 echo 'Building Student Registration Application...'
-                bat 'mvn clean package'
+                bat '"%MAVEN_HOME%\\bin\\mvn.cmd" clean package'
             }
         }
 
